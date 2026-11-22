@@ -1,0 +1,162 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="StudyNest - Subject-wise study resources, lecture notes, and formula sheets.">
+  <title>Study Resources | StudyNest</title>
+  <link rel="icon" type="image/svg+xml" href="assets/images/favicon.svg">
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+
+  <!-- Navigation Bar -->
+  <header class="site-header">
+    <div class="container nav-container">
+      <a href="index.html" class="brand-logo">
+        <span class="brand-icon">&#127891;</span>
+        <span>StudyNest</span>
+      </a>
+      <button class="nav-toggle" id="navToggle" aria-label="Toggle navigation">&#9776;</button>
+      <nav>
+        <ul class="nav-menu" id="navMenu">
+          <li><a href="index.html" class="nav-link">Home</a></li>
+          <li><a href="resources.html" class="nav-link active">Resources</a></li>
+          <li><a href="planner.html" class="nav-link">Planner &amp; Timetable</a></li>
+        </ul>
+      </nav>
+    </div>
+  </header>
+
+  <main class="main-content">
+    <div class="container">
+
+      <!-- Page Banner -->
+      <section class="page-banner">
+        <h1 class="banner-title">Subject Resources &amp; Notes</h1>
+        <p class="banner-subtitle">
+          Curated notes, formula sheets, and textbook links for college engineering courses. You can add, edit, or delete any resource!
+        </p>
+      </section>
+
+      <!-- LocalStorage Information Banner -->
+      <div class="storage-note">
+        <strong>Browser Storage Active:</strong> Any resources you add, edit, or delete are saved privately in your current browser using <code>localStorage</code>. They stay saved even after refreshing the page. Click "Reset to Default" at any time to restore initial sample materials.
+      </div>
+
+      <!-- Action Toolbar -->
+      <div class="action-toolbar">
+        <div>
+          <h2 style="font-size: 1.15rem; margin-bottom: 2px;">Manage Study Resources</h2>
+          <p style="font-size: 0.85rem; color: var(--text-muted); margin: 0;">Add your own subjects or customize the sample materials.</p>
+        </div>
+        <div class="btn-group">
+          <button type="button" id="toggleResourceFormBtn" class="btn btn-primary btn-sm">+ Add Resource</button>
+          <button type="button" id="resetResourcesBtn" class="btn btn-outline btn-sm">Reset to Default</button>
+        </div>
+      </div>
+
+      <!-- Add / Edit Resource Form (Hidden by default, toggled via JS) -->
+      <div id="resourceFormBox" class="form-box" style="display: none;">
+        <h3 id="resourceFormTitle">Add New Study Resource</h3>
+        <form id="resourceForm">
+          <input type="hidden" id="resourceEditIndex" value="-1">
+
+          <div class="form-row">
+            <div class="form-group">
+              <label for="resourceTitle" class="form-label">Subject / Title *</label>
+              <input type="text" id="resourceTitle" class="form-control" placeholder="e.g. Data Structures &amp; Algorithms" required>
+            </div>
+            <div class="form-group">
+              <label for="resourceCategory" class="form-label">Category *</label>
+              <select id="resourceCategory" class="form-control" required>
+                <option value="cs">Computer Science &amp; IT</option>
+                <option value="math">Mathematics</option>
+                <option value="science">Physics &amp; Chemistry</option>
+                <option value="engineering">Electrical Engineering</option>
+                <option value="other">Other</option>
+              </select>
+            </div>
+          </div>
+
+          <div class="form-row">
+            <div class="form-group">
+              <label for="resourceType" class="form-label">Resource Type *</label>
+              <input type="text" id="resourceType" class="form-control" placeholder="e.g. Formula Sheet, Lecture Notes" required>
+            </div>
+            <div class="form-group">
+              <label for="resourceUrl" class="form-label">Resource Link (Optional)</label>
+              <input type="text" id="resourceUrl" class="form-control" placeholder="e.g. https://openstax.org or https://w3schools.com">
+            </div>
+          </div>
+
+          <div class="form-group">
+            <label for="resourceDesc" class="form-label">Short Description *</label>
+            <textarea id="resourceDesc" class="form-control" placeholder="Brief summary of syllabus topics covered..." required></textarea>
+          </div>
+
+          <div class="form-actions">
+            <button type="submit" class="btn btn-primary btn-sm">Save Resource</button>
+            <button type="button" id="cancelResourceBtn" class="btn btn-outline btn-sm">Cancel</button>
+          </div>
+        </form>
+      </div>
+
+      <!-- Search & Filters -->
+      <div class="search-box">
+        <input type="text" id="resourceSearch" class="search-input" placeholder="Search by subject, topic, or keyword (e.g. calculus, pointers, circuits)...">
+        <div class="filter-buttons">
+          <span style="font-size: 0.85rem; font-weight: 600; margin-right: 5px;">Filter:</span>
+          <button type="button" class="filter-btn active" data-filter="all">All</button>
+          <button type="button" class="filter-btn" data-filter="cs">Computer Science</button>
+          <button type="button" class="filter-btn" data-filter="math">Mathematics</button>
+          <button type="button" class="filter-btn" data-filter="science">Physics &amp; Chemistry</button>
+          <button type="button" class="filter-btn" data-filter="engineering">Electrical Eng</button>
+        </div>
+        <div id="resultsCount" style="margin-top: 10px; font-size: 0.85rem; color: var(--text-muted);">
+          Showing resources
+        </div>
+      </div>
+
+      <!-- Resources Cards Grid (Populated dynamically via JavaScript) -->
+      <div id="resourceGrid" class="cards-grid">
+        <!-- Rendered by js/script.js from localStorage -->
+      </div>
+
+    </div>
+  </main>
+
+  <!-- Footer -->
+  <footer class="site-footer">
+    <div class="container">
+      <div class="footer-grid">
+        <div class="footer-col">
+          <h3>StudyNest</h3>
+          <p>Curated engineering resources editable directly in your browser with vanilla JavaScript.</p>
+        </div>
+        <div class="footer-col">
+          <h4>Pages</h4>
+          <ul class="footer-links">
+            <li><a href="index.html">Home</a></li>
+            <li><a href="resources.html">Resources</a></li>
+            <li><a href="planner.html">Planner &amp; Timetable</a></li>
+          </ul>
+        </div>
+        <div class="footer-col">
+          <h4>Connect</h4>
+          <ul class="footer-links">
+            <li><a href="https://github.com/angad-r" target="_blank" rel="noopener noreferrer">&#128187; GitHub: @angad-r</a></li>
+            <li><a href="https://github.com/angad-r/StudyNest" target="_blank" rel="noopener noreferrer">&#9733; StudyNest Repository</a></li>
+          </ul>
+        </div>
+      </div>
+      <div class="footer-bottom">
+        &copy; 2026 StudyNest &bull; Developed by <a href="https://github.com/angad-r" target="_blank" rel="noopener noreferrer" style="color: #63b3ed; text-decoration: underline;">Angad Ranjan (@angad-r)</a> &bull; College Web Development Project
+      </div>
+    </div>
+  </footer>
+
+  <script src="js/auth.js"></script>
+  <script src="js/script.js"></script>
+</body>
+</html>

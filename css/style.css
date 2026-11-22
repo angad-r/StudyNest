@@ -1,0 +1,770 @@
+/* ==========================================================================
+   StudyNest - Main Stylesheet
+   College Web Development Project (HTML5, CSS3, Vanilla JavaScript)
+   ========================================================================== */
+
+/* 1. Theme Variables */
+:root {
+  --primary-color: #0f4c81;       /* College navy blue */
+  --primary-hover: #0a355c;
+  --accent-color: #2b6cb0;        /* Educational blue */
+  --accent-light: #ebf8ff;        /* Light blue highlight */
+  --bg-color: #f7fafc;            /* Clean light background */
+  --card-bg: #ffffff;             /* White card surface */
+  --text-dark: #1a202c;           /* Headings */
+  --text-body: #4a5568;           /* Body paragraphs */
+  --text-muted: #718096;          /* Muted labels & dates */
+  --border-color: #e2e8f0;        /* Subtle border lines */
+  --danger-color: #e53e3e;        /* Red for delete/clear */
+  --font-main: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+  --radius: 8px;
+  --shadow: 0 2px 6px rgba(0, 0, 0, 0.08);
+}
+
+/* 2. Reset & Base Typography */
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  font-family: var(--font-main);
+  background-color: var(--bg-color);
+  color: var(--text-body);
+  line-height: 1.6;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+}
+
+h1, h2, h3, h4 {
+  color: var(--text-dark);
+  line-height: 1.3;
+  margin-bottom: 0.5rem;
+}
+
+h1 { font-size: 2rem; }
+h2 { font-size: 1.45rem; }
+h3 { font-size: 1.15rem; }
+
+p {
+  margin-bottom: 1rem;
+}
+
+a {
+  color: var(--accent-color);
+  text-decoration: none;
+}
+
+a:hover {
+  text-decoration: underline;
+}
+
+/* 3. Layout Container */
+.container {
+  width: 100%;
+  max-width: 1050px;
+  margin: 0 auto;
+  padding: 0 20px;
+}
+
+.main-content {
+  flex: 1;
+  padding: 30px 0;
+}
+
+/* 4. Navigation Bar */
+.site-header {
+  background-color: var(--card-bg);
+  border-bottom: 1px solid var(--border-color);
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.04);
+  position: sticky;
+  top: 0;
+  z-index: 100;
+}
+
+.nav-container {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  height: 65px;
+}
+
+.brand-logo {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  font-size: 1.15rem;
+  font-weight: 700;
+  color: var(--primary-color);
+  text-decoration: none;
+}
+
+.brand-logo:hover {
+  text-decoration: none;
+}
+
+.brand-icon {
+  font-size: 1.4rem;
+}
+
+.nav-menu {
+  display: flex;
+  align-items: center;
+  list-style: none;
+  gap: 8px;
+}
+
+.nav-link {
+  padding: 8px 14px;
+  border-radius: var(--radius);
+  color: var(--text-body);
+  font-weight: 500;
+  font-size: 0.95rem;
+}
+
+.nav-link:hover {
+  background-color: var(--accent-light);
+  color: var(--primary-color);
+  text-decoration: none;
+}
+
+.nav-link.active {
+  background-color: var(--primary-color);
+  color: #ffffff;
+}
+
+.nav-toggle {
+  display: none;
+  background: none;
+  border: 1px solid var(--border-color);
+  border-radius: var(--radius);
+  padding: 6px 12px;
+  font-size: 1.2rem;
+  cursor: pointer;
+  color: var(--text-dark);
+}
+
+/* 5. Page Banner / Header */
+.page-banner {
+  background-color: var(--card-bg);
+  border-bottom: 1px solid var(--border-color);
+  padding: 25px 0;
+  margin-bottom: 25px;
+}
+
+.banner-title {
+  color: var(--primary-color);
+  font-size: 1.85rem;
+  margin-bottom: 6px;
+}
+
+.banner-subtitle {
+  color: var(--text-muted);
+  font-size: 0.98rem;
+  margin-bottom: 0;
+}
+
+/* 6. Hero Section (Home Page) */
+.hero-box {
+  background: linear-gradient(to bottom, #ebf8ff, #ffffff);
+  border: 1px solid var(--border-color);
+  border-radius: var(--radius);
+  padding: 35px 25px;
+  text-align: center;
+  margin-bottom: 30px;
+}
+
+.hero-tag {
+  display: inline-block;
+  background-color: #bee3f8;
+  color: var(--primary-color);
+  padding: 4px 12px;
+  border-radius: 20px;
+  font-size: 0.85rem;
+  font-weight: 600;
+  margin-bottom: 12px;
+}
+
+.hero-title {
+  font-size: 2.1rem;
+  color: var(--primary-color);
+  margin-bottom: 12px;
+}
+
+.hero-desc {
+  max-width: 680px;
+  margin: 0 auto 20px;
+  font-size: 1.02rem;
+}
+
+.hero-buttons {
+  display: flex;
+  justify-content: center;
+  gap: 12px;
+  flex-wrap: wrap;
+}
+
+/* 7. Buttons */
+.btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 6px;
+  font-family: inherit;
+  font-size: 0.9rem;
+  font-weight: 600;
+  padding: 8px 16px;
+  border-radius: var(--radius);
+  border: 1px solid transparent;
+  cursor: pointer;
+  text-decoration: none;
+  transition: 0.2s;
+}
+
+.btn:hover {
+  text-decoration: none;
+  opacity: 0.95;
+}
+
+.btn-primary {
+  background-color: var(--primary-color);
+  color: #ffffff;
+  border-color: var(--primary-color);
+}
+
+.btn-primary:hover {
+  background-color: var(--primary-hover);
+}
+
+.btn-secondary {
+  background-color: var(--accent-light);
+  color: var(--primary-color);
+  border-color: #bee3f8;
+}
+
+.btn-outline {
+  background-color: transparent;
+  border-color: var(--primary-color);
+  color: var(--primary-color);
+}
+
+.btn-outline:hover {
+  background-color: var(--primary-color);
+  color: #ffffff;
+}
+
+.btn-danger {
+  background-color: var(--danger-color);
+  color: #ffffff;
+  border-color: var(--danger-color);
+}
+
+.btn-sm {
+  padding: 4px 10px;
+  font-size: 0.82rem;
+}
+
+/* 8. Storage & Info Banner */
+.storage-note {
+  background-color: var(--accent-light);
+  border-left: 4px solid var(--accent-color);
+  border-radius: 4px;
+  padding: 12px 16px;
+  margin-bottom: 25px;
+  font-size: 0.9rem;
+}
+
+.storage-note strong {
+  color: var(--primary-color);
+}
+
+/* 9. Action Toolbars */
+.action-toolbar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 12px;
+  background-color: var(--card-bg);
+  border: 1px solid var(--border-color);
+  border-radius: var(--radius);
+  padding: 12px 16px;
+  margin-bottom: 20px;
+}
+
+.btn-group {
+  display: flex;
+  gap: 8px;
+  flex-wrap: wrap;
+}
+
+/* 10. Forms */
+.form-box {
+  background-color: var(--card-bg);
+  border: 1px solid var(--border-color);
+  border-radius: var(--radius);
+  padding: 20px;
+  margin-bottom: 25px;
+  box-shadow: var(--shadow);
+}
+
+.form-box h3 {
+  color: var(--primary-color);
+  margin-bottom: 15px;
+  border-bottom: 2px solid var(--accent-light);
+  padding-bottom: 6px;
+}
+
+.form-group {
+  margin-bottom: 12px;
+}
+
+.form-row {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 14px;
+}
+
+.form-label {
+  display: block;
+  font-weight: 600;
+  font-size: 0.88rem;
+  margin-bottom: 4px;
+  color: var(--text-dark);
+}
+
+.form-control {
+  width: 100%;
+  padding: 8px 12px;
+  font-family: inherit;
+  font-size: 0.92rem;
+  border: 1px solid var(--border-color);
+  border-radius: var(--radius);
+  background-color: #ffffff;
+}
+
+.form-control:focus {
+  outline: none;
+  border-color: var(--accent-color);
+}
+
+textarea.form-control {
+  resize: vertical;
+  min-height: 70px;
+}
+
+.form-actions {
+  display: flex;
+  gap: 10px;
+  margin-top: 15px;
+}
+
+/* 11. Search Box & Filter Buttons */
+.search-box {
+  background-color: var(--card-bg);
+  border: 1px solid var(--border-color);
+  border-radius: var(--radius);
+  padding: 14px;
+  margin-bottom: 22px;
+}
+
+.search-input {
+  width: 100%;
+  padding: 8px 12px;
+  font-size: 0.92rem;
+  border: 1px solid var(--border-color);
+  border-radius: var(--radius);
+  margin-bottom: 10px;
+}
+
+.filter-buttons {
+  display: flex;
+  gap: 6px;
+  flex-wrap: wrap;
+  align-items: center;
+}
+
+.filter-btn {
+  background-color: #edf2f7;
+  border: 1px solid var(--border-color);
+  padding: 4px 12px;
+  border-radius: 14px;
+  font-size: 0.82rem;
+  cursor: pointer;
+  color: var(--text-body);
+}
+
+.filter-btn.active, .filter-btn:hover {
+  background-color: var(--primary-color);
+  color: #ffffff;
+  border-color: var(--primary-color);
+}
+
+/* 12. Cards & Grid Layout */
+.cards-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(310px, 1fr));
+  gap: 18px;
+}
+
+.card {
+  background-color: var(--card-bg);
+  border: 1px solid var(--border-color);
+  border-radius: var(--radius);
+  padding: 18px;
+  display: flex;
+  flex-direction: column;
+  box-shadow: var(--shadow);
+}
+
+.card-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  margin-bottom: 8px;
+}
+
+.card-title {
+  font-size: 1.1rem;
+  color: var(--primary-color);
+  margin-bottom: 4px;
+}
+
+.card-desc {
+  font-size: 0.9rem;
+  color: var(--text-body);
+  flex-grow: 1;
+  margin-bottom: 12px;
+}
+
+.card-meta {
+  margin-bottom: 12px;
+}
+
+.card-footer {
+  display: flex;
+  gap: 8px;
+  flex-wrap: wrap;
+  align-items: center;
+  padding-top: 10px;
+  border-top: 1px solid var(--border-color);
+}
+
+/* 13. Badges */
+.badge {
+  display: inline-block;
+  padding: 3px 8px;
+  font-size: 0.72rem;
+  font-weight: 600;
+  border-radius: 10px;
+  text-transform: uppercase;
+}
+
+.badge-blue { background-color: #ebf8ff; color: #2b6cb0; }
+.badge-green { background-color: #f0fff4; color: #276749; }
+.badge-purple { background-color: #faf5ff; color: #6b46c1; }
+.badge-yellow { background-color: #fffff0; color: #975a16; }
+
+/* 14. Weekly Timetable Table */
+.table-wrap {
+  width: 100%;
+  overflow-x: auto;
+  background-color: var(--card-bg);
+  border: 1px solid var(--border-color);
+  border-radius: var(--radius);
+  margin-bottom: 25px;
+  box-shadow: var(--shadow);
+}
+
+.timetable {
+  width: 100%;
+  border-collapse: collapse;
+  min-width: 720px;
+  font-size: 0.88rem;
+}
+
+.timetable th, .timetable td {
+  padding: 10px 8px;
+  border: 1px solid var(--border-color);
+  vertical-align: middle;
+}
+
+.timetable th {
+  background-color: var(--primary-color);
+  color: #ffffff;
+  text-align: center;
+  font-weight: 600;
+}
+
+.time-slot {
+  background-color: #f7fafc;
+  color: var(--primary-color);
+  font-weight: 600;
+  white-space: nowrap;
+  text-align: center;
+}
+
+.slot-study {
+  background-color: #ebf8ff;
+  border-left: 3px solid #3182ce;
+}
+
+.slot-break {
+  background-color: #edf2f7;
+  text-align: center;
+  font-style: italic;
+  color: #718096;
+}
+
+/* 15. Task Checklist (Planner) */
+.task-list {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  margin-bottom: 25px;
+}
+
+.task-item {
+  background-color: var(--card-bg);
+  border: 1px solid var(--border-color);
+  border-radius: var(--radius);
+  padding: 12px 16px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+}
+
+.task-item.completed {
+  opacity: 0.7;
+  background-color: #f8fafc;
+}
+
+.task-item.completed .task-text {
+  text-decoration: line-through;
+  color: var(--text-muted);
+}
+
+.task-left {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  flex: 1;
+}
+
+.task-checkbox {
+  width: 18px;
+  height: 18px;
+  cursor: pointer;
+}
+
+.task-text {
+  font-weight: 600;
+  font-size: 0.95rem;
+}
+
+/* 16. Footer */
+.site-footer {
+  background-color: #1a202c;
+  color: #cbd5e0;
+  padding: 30px 0 18px;
+  margin-top: auto;
+}
+
+.footer-grid {
+  display: grid;
+  grid-template-columns: 2fr 1fr 1fr;
+  gap: 25px;
+  margin-bottom: 20px;
+}
+
+.footer-col h3, .footer-col h4 {
+  color: #ffffff;
+  margin-bottom: 8px;
+}
+
+.footer-links {
+  list-style: none;
+}
+
+.footer-links li {
+  margin-bottom: 5px;
+}
+
+.footer-links a {
+  color: #a0aec0;
+}
+
+.footer-links a:hover {
+  color: #ffffff;
+}
+
+.footer-bottom {
+  text-align: center;
+  padding-top: 15px;
+  border-top: 1px solid #2d3748;
+  font-size: 0.85rem;
+  color: #718096;
+}
+
+/* 16b. Login / Register Pages */
+.auth-page {
+  background: linear-gradient(135deg, var(--accent-light) 0%, var(--bg-color) 60%);
+}
+
+.auth-wrapper {
+  flex: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 40px 16px;
+}
+
+.auth-card {
+  width: 100%;
+  max-width: 440px;
+  background-color: var(--card-bg);
+  border: 1px solid var(--border-color);
+  border-radius: 12px;
+  padding: 32px 28px;
+  box-shadow: 0 10px 30px rgba(15, 76, 129, 0.12);
+}
+
+.auth-brand {
+  justify-content: center;
+  font-size: 1rem;
+  margin-bottom: 22px;
+}
+
+.auth-title {
+  text-align: center;
+  font-size: 1.6rem;
+}
+
+.auth-subtitle {
+  text-align: center;
+  color: var(--text-muted);
+  font-size: 0.92rem;
+  margin-bottom: 20px;
+}
+
+.auth-card .form-control {
+  padding: 10px 12px;
+}
+
+.auth-submit {
+  width: 100%;
+  margin-top: 8px;
+  padding: 11px;
+}
+
+.auth-submit:disabled {
+  opacity: 0.7;
+  cursor: wait;
+}
+
+.auth-message {
+  padding: 10px 12px;
+  border-radius: var(--radius);
+  font-size: 0.9rem;
+  margin-bottom: 15px;
+}
+
+.auth-error {
+  background-color: #fff5f5;
+  border: 1px solid #feb2b2;
+  color: #c53030;
+}
+
+.auth-success {
+  background-color: #f0fff4;
+  border: 1px solid #9ae6b4;
+  color: #276749;
+}
+
+.auth-switch {
+  text-align: center;
+  margin: 18px 0 0;
+  font-size: 0.92rem;
+}
+
+.nav-user {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin-left: 8px;
+  padding-left: 12px;
+  border-left: 1px solid var(--border-color);
+}
+
+.nav-user-name {
+  font-weight: 600;
+  color: var(--primary-color);
+  font-size: 0.92rem;
+  white-space: nowrap;
+}
+
+/* 17. Responsive Breakpoint */
+@media (max-width: 768px) {
+  .nav-user {
+    margin-left: 0;
+    padding-left: 0;
+    border-left: none;
+    padding-top: 10px;
+    border-top: 1px solid var(--border-color);
+  }
+
+  .nav-toggle {
+    display: block;
+  }
+
+  .nav-menu {
+    display: none;
+    position: absolute;
+    top: 65px;
+    left: 0;
+    right: 0;
+    background-color: var(--card-bg);
+    border-bottom: 1px solid var(--border-color);
+    flex-direction: column;
+    padding: 15px;
+    box-shadow: var(--shadow);
+  }
+
+  .nav-menu.active {
+    display: flex;
+  }
+
+  .form-row {
+    grid-template-columns: 1fr;
+  }
+
+  .footer-grid {
+    grid-template-columns: 1fr;
+  }
+}
+
+/* 18. Print Stylesheet */
+@media print {
+  .site-header, .site-footer, .action-toolbar, .form-box, .btn, .storage-note, .task-list, .search-box {
+    display: none !important;
+  }
+
+  body {
+    background: #ffffff !important;
+    color: #000000 !important;
+  }
+
+  .timetable {
+    width: 100% !important;
+  }
+
+  .timetable th {
+    background-color: #0f4c81 !important;
+    color: #ffffff !important;
+    -webkit-print-color-adjust: exact;
+    print-color-adjust: exact;
+  }
+}

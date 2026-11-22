@@ -1,0 +1,14 @@
+# SQLite Database file (avoid committing local sessions & binary DB)
+database/study_hub.db
+*.db
+*.sqlite3
+
+# Python bytecode & cache
+__pycache__/
+*.py[cod]
+*$py.class
+.pytest_cache/
+
+# OS metadata
+.DS_Store
+Thumbs.db

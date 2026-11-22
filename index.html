@@ -1,0 +1,195 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="StudyNest - A college student portal for study resources, revision tips, and weekly timetables.">
+  <title>StudyNest | Home</title>
+  <link rel="icon" type="image/svg+xml" href="assets/images/favicon.svg">
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+
+  <!-- Navigation Bar -->
+  <header class="site-header">
+    <div class="container nav-container">
+      <a href="index.html" class="brand-logo">
+        <span class="brand-icon">&#127891;</span>
+        <span>StudyNest</span>
+      </a>
+      <button class="nav-toggle" id="navToggle" aria-label="Toggle navigation">&#9776;</button>
+      <nav>
+        <ul class="nav-menu" id="navMenu">
+          <li><a href="index.html" class="nav-link active">Home</a></li>
+          <li><a href="resources.html" class="nav-link">Resources</a></li>
+          <li><a href="planner.html" class="nav-link">Planner &amp; Timetable</a></li>
+        </ul>
+      </nav>
+    </div>
+  </header>
+
+  <main class="main-content">
+    <div class="container">
+
+      <!-- Hero Section -->
+      <section class="hero-box">
+        <span class="hero-tag">College Academic Portal</span>
+        <h1 class="hero-title">Study Smarter, Not Harder.</h1>
+        <p class="hero-desc">
+          Welcome to <strong>StudyNest</strong> — a college web development project designed to help engineering students organize study materials, revision strategies, and weekly schedules. Add, edit, or customize any resource and schedule directly in your browser!
+        </p>
+        <div class="hero-buttons">
+          <a href="resources.html" class="btn btn-primary">Browse Study Resources &rarr;</a>
+          <a href="planner.html" class="btn btn-secondary">Open Planner &amp; Timetable</a>
+        </div>
+      </section>
+
+      <!-- Quick Search Bar -->
+      <div class="search-box">
+        <form action="resources.html" method="GET" style="display: flex; gap: 10px;">
+          <input type="text" name="search" class="search-input" placeholder="Search calculus, C programming, physics notes..." style="margin-bottom: 0;">
+          <button type="submit" class="btn btn-primary" style="flex-shrink: 0;">Search</button>
+        </form>
+      </div>
+
+      <!-- Featured Subjects Section -->
+      <section style="margin-bottom: 35px;">
+        <div style="text-align: center; margin-bottom: 20px;">
+          <h2>Featured Subject Resources</h2>
+          <p style="color: var(--text-muted);">Core engineering and science subject materials ready for midterm and semester exam revision.</p>
+        </div>
+
+        <div class="cards-grid">
+          <article class="card">
+            <div class="card-header">
+              <h3 class="card-title">Mathematics &amp; Calculus</h3>
+              <span class="badge badge-blue">Math</span>
+            </div>
+            <p class="card-desc">Differential calculus, limit theorems, integration techniques, and matrices.</p>
+            <div class="card-footer">
+              <a href="resources.html?search=calculus" class="btn btn-primary btn-sm">Explore Math Notes</a>
+            </div>
+          </article>
+
+          <article class="card">
+            <div class="card-header">
+              <h3 class="card-title">Programming in C</h3>
+              <span class="badge badge-blue">Computer Science</span>
+            </div>
+            <p class="card-desc">Pointers, dynamic memory allocation (malloc/free), structs, and code examples.</p>
+            <div class="card-footer">
+              <a href="resources.html?search=programming" class="btn btn-primary btn-sm">Explore C Notes</a>
+            </div>
+          </article>
+
+          <article class="card">
+            <div class="card-header">
+              <h3 class="card-title">Engineering Physics</h3>
+              <span class="badge badge-blue">Physics</span>
+            </div>
+            <p class="card-desc">Wave optics, interference, lasers, fiber optics, and core theory derivations.</p>
+            <div class="card-footer">
+              <a href="resources.html?search=physics" class="btn btn-primary btn-sm">Explore Physics Notes</a>
+            </div>
+          </article>
+        </div>
+
+        <div style="text-align: center; margin-top: 20px;">
+          <a href="resources.html" class="btn btn-outline">View All Available Resources &rarr;</a>
+        </div>
+      </section>
+
+      <!-- Popular Study Tips Preview -->
+      <section style="margin-bottom: 35px;">
+        <div style="text-align: center; margin-bottom: 20px;">
+          <h2>Featured Study Techniques</h2>
+          <p style="color: var(--text-muted);">Practical, student-tested techniques to improve retention and reduce exam anxiety.</p>
+        </div>
+
+        <div class="cards-grid">
+          <article class="card">
+            <h3 class="card-title">&#128161; Active Recall Method</h3>
+            <p class="card-desc">Close your book and test your memory by writing down core formulas and definitions from memory on a blank sheet.</p>
+            <div class="card-footer">
+              <a href="planner.html#study-tips" class="btn btn-outline btn-sm">Read Full Tips &rarr;</a>
+            </div>
+          </article>
+
+          <article class="card">
+            <h3 class="card-title">&#9201; The 50/10 Study Cycle</h3>
+            <p class="card-desc">Study with focused concentration for 50 minutes, followed strictly by a 10-minute break away from screens.</p>
+            <div class="card-footer">
+              <a href="planner.html#study-tips" class="btn btn-outline btn-sm">Read Full Tips &rarr;</a>
+            </div>
+          </article>
+
+          <article class="card">
+            <h3 class="card-title">&#128221; Formula Compression</h3>
+            <p class="card-desc">Summarize an entire semester subject's key formulas and theorems onto one handwritten sheet for rapid review.</p>
+            <div class="card-footer">
+              <a href="planner.html#study-tips" class="btn btn-outline btn-sm">Read Full Tips &rarr;</a>
+            </div>
+          </article>
+        </div>
+      </section>
+
+      <!-- Timetable & Planner CTA Banner -->
+      <section class="card" style="background-color: var(--accent-light); border-color: #bee3f8; text-align: center; padding: 30px; margin-bottom: 35px;">
+        <h2 style="color: var(--primary-color);">Customizable Weekly Timetable &amp; Task Checklist</h2>
+        <p style="max-width: 650px; margin: 0 auto 20px;">
+          Consistency beats last-minute cramming. Balance lectures, coding practice, and revision with our interactive timetable and task tracker. You can edit any slot, check off tasks, and print your schedule!
+        </p>
+        <a href="planner.html" class="btn btn-primary">Open &amp; Edit Planner &rarr;</a>
+      </section>
+
+      <!-- About This College Project Section -->
+      <section class="card" style="margin-bottom: 20px;">
+        <div class="card-header">
+          <h2 style="color: var(--primary-color);">About This Project</h2>
+          <span class="badge badge-green">College Web Dev</span>
+        </div>
+        <p>
+          <strong>StudyNest</strong> is a college front-end web development project created by a 2nd-year B.Tech student. It is built strictly using standard <strong>HTML5, CSS3, and vanilla JavaScript</strong> without external frameworks, Node.js dependencies, or backend databases.
+        </p>
+        <p>
+          <strong>How Edits are Saved:</strong> All user customizations — including adding or editing study resources, modifying timetable slots, and checking off study tasks — are stored inside your browser's <code>localStorage</code>, separately for each logged-in student. Student accounts (Login / Register) are stored in a SQLite database on the Python server.
+        </p>
+      </section>
+
+    </div>
+  </main>
+
+  <!-- Footer -->
+  <footer class="site-footer">
+    <div class="container">
+      <div class="footer-grid">
+        <div class="footer-col">
+          <h3>StudyNest</h3>
+          <p>A college web development study resources and planner hub built with HTML5, CSS3, and vanilla JavaScript with localStorage support.</p>
+        </div>
+        <div class="footer-col">
+          <h4>Pages</h4>
+          <ul class="footer-links">
+            <li><a href="index.html">Home</a></li>
+            <li><a href="resources.html">Resources</a></li>
+            <li><a href="planner.html">Planner &amp; Timetable</a></li>
+          </ul>
+        </div>
+        <div class="footer-col">
+          <h4>Connect</h4>
+          <ul class="footer-links">
+            <li><a href="https://github.com/angad-r" target="_blank" rel="noopener noreferrer">&#128187; GitHub: @angad-r</a></li>
+            <li><a href="https://github.com/angad-r/StudyNest" target="_blank" rel="noopener noreferrer">&#9733; StudyNest Repository</a></li>
+          </ul>
+        </div>
+      </div>
+      <div class="footer-bottom">
+        &copy; 2026 StudyNest &bull; Developed by <a href="https://github.com/angad-r" target="_blank" rel="noopener noreferrer" style="color: #63b3ed; text-decoration: underline;">Angad Ranjan (@angad-r)</a> &bull; College Web Development Project
+      </div>
+    </div>
+  </footer>
+
+  <script src="js/auth.js"></script>
+  <script src="js/script.js"></script>
+</body>
+</html>

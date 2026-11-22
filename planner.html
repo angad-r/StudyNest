@@ -1,0 +1,263 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="StudyNest - Weekly timetable, personal study planner, and high-yield revision tips.">
+  <title>Planner &amp; Timetable | StudyNest</title>
+  <link rel="icon" type="image/svg+xml" href="assets/images/favicon.svg">
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+
+  <!-- Navigation Bar -->
+  <header class="site-header">
+    <div class="container nav-container">
+      <a href="index.html" class="brand-logo">
+        <span class="brand-icon">&#127891;</span>
+        <span>StudyNest</span>
+      </a>
+      <button class="nav-toggle" id="navToggle" aria-label="Toggle navigation">&#9776;</button>
+      <nav>
+        <ul class="nav-menu" id="navMenu">
+          <li><a href="index.html" class="nav-link">Home</a></li>
+          <li><a href="resources.html" class="nav-link">Resources</a></li>
+          <li><a href="planner.html" class="nav-link active">Planner &amp; Timetable</a></li>
+        </ul>
+      </nav>
+    </div>
+  </header>
+
+  <main class="main-content">
+    <div class="container">
+
+      <!-- Page Banner -->
+      <section class="page-banner">
+        <h1 class="banner-title">Weekly Timetable &amp; Study Planner</h1>
+        <p class="banner-subtitle">
+          Organize your college study routine, track daily revision tasks, and apply proven study tips.
+        </p>
+      </section>
+
+      <!-- LocalStorage Information Banner -->
+      <div class="storage-note">
+        <strong>Browser Storage Active:</strong> All changes to your weekly timetable and study tasks are saved automatically in your browser's <code>localStorage</code>. Click any table cell or use the buttons below to edit your schedule.
+      </div>
+
+      <!-- ====================================================================
+           PART 1: WEEKLY TIMETABLE
+           ==================================================================== -->
+      <section style="margin-bottom: 40px;">
+        <div class="action-toolbar">
+          <div>
+            <h2 style="font-size: 1.15rem; margin-bottom: 2px;">Weekly Semester Timetable</h2>
+            <p style="font-size: 0.85rem; color: var(--text-muted); margin: 0;">Click any study cell to edit, or use the buttons to customize and print.</p>
+          </div>
+          <div class="btn-group">
+            <button type="button" id="toggleSessionFormBtn" class="btn btn-primary btn-sm">&#9998; Edit Slot</button>
+            <button type="button" id="printTimetableBtn" class="btn btn-secondary btn-sm">&#128438; Print Schedule</button>
+            <button type="button" id="resetTimetableBtn" class="btn btn-outline btn-sm">Reset to Default</button>
+          </div>
+        </div>
+
+        <!-- Edit Session Form (Hidden by default, shown when clicking Edit Slot or cell) -->
+        <div id="sessionFormBox" class="form-box" style="display: none;">
+          <h3>Update Timetable Session</h3>
+          <form id="sessionForm">
+            <div class="form-row">
+              <div class="form-group">
+                <label for="sessionSlotIndex" class="form-label">Time Slot *</label>
+                <select id="sessionSlotIndex" class="form-control" required>
+                  <option value="0">07:00 AM – 08:00 AM (Early Morning Study)</option>
+                  <option value="2">09:00 AM – 01:00 PM (Morning Lectures &amp; Labs)</option>
+                  <option value="4">02:00 PM – 04:30 PM (Afternoon Labs &amp; Library)</option>
+                  <option value="6">06:00 PM – 08:00 PM (Evening Self-Study)</option>
+                  <option value="8">09:00 PM – 10:30 PM (Night Revision)</option>
+                </select>
+              </div>
+
+              <div class="form-group">
+                <label for="sessionDay" class="form-label">Day of Week *</label>
+                <select id="sessionDay" class="form-control" required>
+                  <option value="mon">Monday</option>
+                  <option value="tue">Tuesday</option>
+                  <option value="wed">Wednesday</option>
+                  <option value="thu">Thursday</option>
+                  <option value="fri">Friday</option>
+                  <option value="sat">Saturday</option>
+                </select>
+              </div>
+            </div>
+
+            <div class="form-group">
+              <label for="sessionSubject" class="form-label">Subject / Activity *</label>
+              <input type="text" id="sessionSubject" class="form-control" placeholder="e.g. Calculus Practice, C Programming, Free Slot" required>
+            </div>
+
+            <div class="form-actions">
+              <button type="submit" class="btn btn-primary btn-sm">Save Session</button>
+              <button type="button" id="clearSessionBtn" class="btn btn-danger btn-sm">Clear This Slot</button>
+              <button type="button" id="cancelSessionBtn" class="btn btn-outline btn-sm">Cancel</button>
+            </div>
+          </form>
+        </div>
+
+        <!-- Interactive Timetable Table -->
+        <div class="table-wrap">
+          <table class="timetable" id="timetableTable">
+            <thead>
+              <tr>
+                <th style="width: 17%;">Time Slot</th>
+                <th style="width: 13.8%;">Monday</th>
+                <th style="width: 13.8%;">Tuesday</th>
+                <th style="width: 13.8%;">Wednesday</th>
+                <th style="width: 13.8%;">Thursday</th>
+                <th style="width: 13.8%;">Friday</th>
+                <th style="width: 14%;">Saturday</th>
+              </tr>
+            </thead>
+            <tbody id="timetableBody">
+              <!-- Rendered dynamically by js/script.js from localStorage -->
+            </tbody>
+          </table>
+        </div>
+        <p style="font-size: 0.85rem; color: var(--text-muted); margin-top: -15px; margin-bottom: 30px;">
+          &#128161; <em>Tip: Click directly on any study cell in the table above to quickly edit or clear it.</em>
+        </p>
+      </section>
+
+      <!-- ====================================================================
+           PART 2: PERSONAL STUDY TASKS CHECKLIST
+           ==================================================================== -->
+      <section style="margin-bottom: 40px;">
+        <div class="action-toolbar">
+          <div>
+            <h2 style="font-size: 1.15rem; margin-bottom: 2px;">Daily Study Tasks Checklist</h2>
+            <p style="font-size: 0.85rem; color: var(--text-muted); margin: 0;">Add your target revision topics and check them off as you complete them.</p>
+          </div>
+          <div>
+            <button type="button" id="resetTasksBtn" class="btn btn-outline btn-sm">Reset Tasks</button>
+          </div>
+        </div>
+
+        <!-- Add Task Form -->
+        <div class="form-box" style="margin-bottom: 18px;">
+          <h3>Add New Study Task</h3>
+          <form id="taskForm" style="display: flex; gap: 10px; flex-wrap: wrap;">
+            <div style="flex: 2; min-width: 200px;">
+              <input type="text" id="taskTitle" class="form-control" placeholder="Task description (e.g. Solve 5 double integral problems)..." required>
+            </div>
+            <div style="flex: 1; min-width: 140px;">
+              <input type="text" id="taskSubject" class="form-control" placeholder="Subject (e.g. Math, C Lab)">
+            </div>
+            <button type="submit" class="btn btn-primary btn-sm" style="flex-shrink: 0;">+ Add Task</button>
+          </form>
+        </div>
+
+        <!-- Dynamic Task List -->
+        <div id="taskList" class="task-list">
+          <!-- Rendered dynamically by js/script.js from localStorage -->
+        </div>
+      </section>
+
+      <!-- ====================================================================
+           PART 3: HIGH-YIELD STUDY & EXAM TIPS
+           ==================================================================== -->
+      <section id="study-tips" style="margin-bottom: 25px;">
+        <div style="margin-bottom: 20px;">
+          <h2>High-Yield Study &amp; Revision Tips</h2>
+          <p style="color: var(--text-muted);">Scientifically backed learning methods to maximize retention for college semester exams.</p>
+        </div>
+
+        <div class="cards-grid">
+          <article class="card">
+            <div class="card-header">
+              <h3 class="card-title">&#128161; Active Recall Method</h3>
+              <span class="badge badge-blue">Technique</span>
+            </div>
+            <p class="card-desc">
+              Instead of passively rereading lecture notes or highlighting textbook lines, close your notebook and try to write down the core concepts, derivations, or code syntax from pure memory.
+            </p>
+            <div class="card-meta">
+              <small style="color: var(--text-muted);"><strong>Best for:</strong> Formulas, definitions, and code syntax.</small>
+            </div>
+          </article>
+
+          <article class="card">
+            <div class="card-header">
+              <h3 class="card-title">&#128197; Spaced Repetition</h3>
+              <span class="badge badge-purple">Planning</span>
+            </div>
+            <p class="card-desc">
+              Review difficult topics at increasing intervals (Day 1, Day 3, Day 7, Day 14). This prevents the natural forgetting curve and embeds difficult engineering theorems into long-term memory.
+            </p>
+            <div class="card-meta">
+              <small style="color: var(--text-muted);"><strong>Best for:</strong> Semester exam preparation &amp; finals.</small>
+            </div>
+          </article>
+
+          <article class="card">
+            <div class="card-header">
+              <h3 class="card-title">&#9201; The 50/10 Focus Cycle</h3>
+              <span class="badge badge-yellow">Productivity</span>
+            </div>
+            <p class="card-desc">
+              Work with full concentration for 50 uninterrupted minutes with your phone out of sight. Follow this strictly with a 10-minute break away from screens to let your mind consolidate what you studied.
+            </p>
+            <div class="card-meta">
+              <small style="color: var(--text-muted);"><strong>Best for:</strong> Long laboratory and problem-solving sessions.</small>
+            </div>
+          </article>
+
+          <article class="card">
+            <div class="card-header">
+              <h3 class="card-title">&#128221; Formula Sheet Compression</h3>
+              <span class="badge badge-green">Revision</span>
+            </div>
+            <p class="card-desc">
+              Condense an entire semester course onto a single double-sided handwritten cheat sheet. The process of deciding what is important enough to include forces deep conceptual synthesis.
+            </p>
+            <div class="card-meta">
+              <small style="color: var(--text-muted);"><strong>Best for:</strong> Midterms and quick revision before entering the exam hall.</small>
+            </div>
+          </article>
+        </div>
+      </section>
+
+    </div>
+  </main>
+
+  <!-- Footer -->
+  <footer class="site-footer">
+    <div class="container">
+      <div class="footer-grid">
+        <div class="footer-col">
+          <h3>StudyNest</h3>
+          <p>A second-year college web development project built with HTML5, CSS3, and vanilla JavaScript with localStorage support.</p>
+        </div>
+        <div class="footer-col">
+          <h4>Pages</h4>
+          <ul class="footer-links">
+            <li><a href="index.html">Home</a></li>
+            <li><a href="resources.html">Resources</a></li>
+            <li><a href="planner.html">Planner &amp; Timetable</a></li>
+          </ul>
+        </div>
+        <div class="footer-col">
+          <h4>Connect</h4>
+          <ul class="footer-links">
+            <li><a href="https://github.com/angad-r" target="_blank" rel="noopener noreferrer">&#128187; GitHub: @angad-r</a></li>
+            <li><a href="https://github.com/angad-r/StudyNest" target="_blank" rel="noopener noreferrer">&#9733; StudyNest Repository</a></li>
+          </ul>
+        </div>
+      </div>
+      <div class="footer-bottom">
+        &copy; 2026 StudyNest &bull; Developed by <a href="https://github.com/angad-r" target="_blank" rel="noopener noreferrer" style="color: #63b3ed; text-decoration: underline;">Angad Ranjan (@angad-r)</a> &bull; College Web Development Project
+      </div>
+    </div>
+  </footer>
+
+  <script src="js/auth.js"></script>
+  <script src="js/script.js"></script>
+</body>
+</html>

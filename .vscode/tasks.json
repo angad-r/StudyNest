@@ -1,0 +1,23 @@
+{
+  "version": "2.0.0",
+  "tasks": [
+    {
+      "label": "Run StudyNest server",
+      "type": "shell",
+      "command": "python3 server.py",
+      "windows": { "command": "python server.py" },
+      "options": { "cwd": "${workspaceFolder}" },
+      "isBackground": true,
+      "problemMatcher": [],
+      "group": { "kind": "build", "isDefault": true }
+    },
+    {
+      "label": "View database users",
+      "type": "shell",
+      "command": "python3 view_database.py",
+      "windows": { "command": "python view_database.py" },
+      "options": { "cwd": "${workspaceFolder}" },
+      "problemMatcher": []
+    }
+  ]
+}
